@@ -59,12 +59,15 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
     @Override
     public void onScroll(int oldTop, int newTop) {
 //        Log.d("onScroll", "Old top : " + oldTop + " newTop : " + newTop);
-        if (newTop < (dummyButton.getBottom() - dummyButton.getPaddingBottom())) { //
+        if (newTop < (dummyButton.getBottom())) { //
             Log.d("onScroll", "dummy button is visible");
+            stickyButton.setVisibility(View.INVISIBLE);
+            dummyButton.setVisibility(View.VISIBLE);
     }
-        else if (newTop > (dummyButton.getBottom() - dummyButton.getPaddingBottom())) {
+        else if (newTop > (dummyButton.getBottom())) {
             Log.d("onScroll", "dummy button is not visible");
-
+            stickyButton.setVisibility(View.VISIBLE);
+            dummyButton.setVisibility(View.INVISIBLE);
         }
     }
 }
