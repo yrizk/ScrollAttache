@@ -15,12 +15,14 @@ import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.Button;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 
 public class Main extends ActionBarActivity  implements CustomScrollView.ScrollListener{
 
     public Button stickyButton;  // a sibling of the scrollview, becomes visible the moment dummyButton is completely off the screen
     public Button dummyButton; // lives inside the scrollview
+    public TextView mainContent;
     public CustomScrollView scrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
         scrollView.setListener(this);
         stickyButton = (Button) findViewById(R.id.sticky_view);
         dummyButton = (Button) findViewById(R.id.sticky_view_dummy);
+        mainContent = (TextView) findViewById(R.id.main_content);
     }
 
 
@@ -59,15 +62,15 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
     @Override
     public void onScroll(int oldTop, int newTop) {
 //        Log.d("onScroll", "Old top : " + oldTop + " newTop : " + newTop);
-        if (newTop < (dummyButton.getBottom())) { //
+        if (newTop < (mainContent.getTop())) { //
             Log.d("onScroll", "dummy button is visible");
-            stickyButton.setVisibility(View.INVISIBLE);
+            stickyButton.setVisibility(View.GONE);
             dummyButton.setVisibility(View.VISIBLE);
     }
-        else if (newTop > (dummyButton.getBottom())) {
+        else if (newTop > (mainContent.getTop())) {
             Log.d("onScroll", "dummy button is not visible");
             stickyButton.setVisibility(View.VISIBLE);
-            dummyButton.setVisibility(View.INVISIBLE);
+            dummyButton.setVisibility(View.GONE);
         }
     }
 }
