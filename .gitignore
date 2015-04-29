@@ -1,6 +1,14 @@
-.gradle
+.gradle/
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
-.DS_Store
+#mac hidden files.  
+.DS_Store 
 /build
+
+#references the sdk location 
+local.properties
+*.iml
+# Android Studio file 
+*.idea 
+
