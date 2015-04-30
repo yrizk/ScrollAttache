@@ -50,10 +50,15 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            throwStickyBomb();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void throwStickyBomb() {
+        ((ViewGroup)stickyButton.getParent()).removeView(stickyButton);
     }
 
 
