@@ -29,10 +29,8 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         scrollView = (CustomScrollView) findViewById(R.id.scroll);
-        scrollView.setListener(this);
+//        scrollView.setListener(this);
         stickyButton = (Button) findViewById(R.id.sticky_view);
-        dummyButton = (Button) findViewById(R.id.sticky_view_dummy);
-        mainContent = (TextView) findViewById(R.id.main_content);
     }
 
 
