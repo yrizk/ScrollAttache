@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
     public Button dummyButton; // lives inside the scrollview
     public TextView mainContent;
     public CustomScrollView scrollView;
+    private LinearLayout rootView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,7 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
         scrollView = (CustomScrollView) findViewById(R.id.scroll);
 //        scrollView.setListener(this);
         stickyButton = (Button) findViewById(R.id.sticky_view);
+        rootView = (LinearLayout) findViewById(R.id.outmost_parent);
     }
 
 
@@ -59,6 +62,8 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
 
     private void throwStickyBomb() {
         ((ViewGroup)stickyButton.getParent()).removeView(stickyButton);
+        rootView.addView(stickyButton,0);
+
     }
 
 
