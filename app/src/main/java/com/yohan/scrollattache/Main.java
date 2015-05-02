@@ -13,12 +13,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
+
 public class Main extends ActionBarActivity  implements CustomScrollView.ScrollListener{
 
     public Button stickyButton;  // a sibling of the scrollview, becomes visible the moment dummyStickyView is completely off the screen
-    public Button dummyStickyView; // lives inside the scrollview
     private TextView ratingsView; //
     public CustomScrollView scrollView;
+    private TextView descriptionView;
     private LinearLayout rootView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,8 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
 //        scrollView.setListener(this);
         stickyButton = (Button) findViewById(R.id.sticky_view);
         rootView = (LinearLayout) findViewById(R.id.outmost_parent);
-        dummyStickyView = (Button) findViewById(R.id.dummy_sticky_view);
         ratingsView = (TextView) findViewById(R.id.ratings);
+        descriptionView = (TextView) findViewById(R.id.description);
     }
 
 
@@ -58,10 +59,9 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
 
     private void throwStickyBomb() {
         RelativeLayout.LayoutParams lp =(RelativeLayout.LayoutParams) ratingsView.getLayoutParams();
-        lp.addRule(RelativeLayout.BELOW,dummyStickyView.getId());
+        lp.addRule(RelativeLayout.BELOW,descriptionView.getId());
         ratingsView.setLayoutParams(lp);
         ((ViewGroup) stickyButton.getParent()).removeView(stickyButton);
-        dummyStickyView.setVisibility(View.INVISIBLE);
         rootView.addView(stickyButton,0);
     }
 

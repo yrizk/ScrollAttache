@@ -60,13 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="sticky view" />
-            <Button
-                android:id="@+id/dummy_sticky_view"
-                android:layout_width="match_parent"
-                android:layout_below="@id/description"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:text="sticky view" />
+
             <!-- Would be ratings -->
             <TextView
                 android:id="@+id/ratings"
