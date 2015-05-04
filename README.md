@@ -1,7 +1,7 @@
 # ScrollAttache
 A simple demonstration on how to use what I call a "StickyView". The bodes well for projects that span a wide range of apis since the core of it is stuff you get from eclair. 
 
-[![Build screen](https://github.com/yrizk/ScrollAttache/blob/master/demo.gif)]
+[![Build screen](https://github.com/yrizk/ScrollAttache/blob/master/demo.gif)
 
 
 What you'll need </br>
