@@ -6,12 +6,15 @@
     android:layout_height="match_parent">
 
 
-    <com.yohan.scrollattache.CustomScrollView
+    <com.yohan.scrollattache.ObservedScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
+        <!-- Yes, with this particular example it woudl have sufficied to use a LinearLayout.
+         However, since Relative Layout can cover potential layouts, I've gone with that .
+         Plus, are we going with nested LinearLayouts? Gross.  -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -20,67 +23,41 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin">
 
-            <ImageView
-                android:id="@+id/movie_pic"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:background="@android:color/holo_blue_light" />
 
             <TextView
-                android:id="@+id/movie_name"
+                android:id="@+id/intro_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textAlignment="center"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@id/movie_pic"
-                android:text="@string/hello_world" />
+                android:text="Hello Sticky View!" />
 
-            <TextView
-                android:id="@+id/description"
+            <View
+                android:id="@+id/main_content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/movie_pic"
-                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                android:layout_height="400dp"
+                android:layout_below="@id/intro_view"
+                android:background="@android:color/holo_blue_bright"
+              />
 
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-
-            In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-
-            Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.
-
-            Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
-
-            Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,"
-                android:textSize="24sp" />
-
+            <!-- Again, this can be any view... I'm already feeling like I'm going to regret that
+            statement. How about this, any WIDGET. -->
             <Button
                 android:id="@+id/sticky_view"
-                android:layout_below="@id/description"
+                android:layout_below="@id/main_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="sticky view" />
 
-            <!-- Would be ratings -->
-            <TextView
-                android:id="@+id/ratings"
+            <View
+                android:id="@+id/bottom_view"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="850dp"
                 android:layout_below="@id/sticky_view"
-                android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-
-            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
-
-            In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
-
-            Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.
-
-            Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.
-
-            Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,"
-                android:textSize="24sp" />
+                android:background="@android:color/holo_red_light"/>
 
 
         </RelativeLayout>
-    </com.yohan.scrollattache.CustomScrollView>
+    </com.yohan.scrollattache.ObservedScrollView>
 </LinearLayout>
