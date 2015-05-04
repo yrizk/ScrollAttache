@@ -33,10 +33,12 @@
                 android:layout_alignParentTop="true"
                 android:text="Hello Sticky View!" />
 
-            <View
+            <TextView
                 android:id="@+id/main_content"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
+                android:textSize="36sp"
+                android:text="Here is a View"
                 android:layout_below="@id/intro_view"
                 android:background="@android:color/holo_blue_bright"
               />
@@ -50,9 +52,11 @@
                 android:layout_height="wrap_content"
                 android:text="sticky view" />
 
-            <View
+            <TextView
                 android:id="@+id/bottom_view"
                 android:layout_width="match_parent"
+                android:text="Here is another random view. "
+                android:textSize="36sp"
                 android:layout_height="850dp"
                 android:layout_below="@id/sticky_view"
                 android:background="@android:color/holo_red_light"/>

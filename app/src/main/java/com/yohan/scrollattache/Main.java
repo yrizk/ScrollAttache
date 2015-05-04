@@ -8,14 +8,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 
 public class Main extends ActionBarActivity  implements ObservedScrollView.ScrollListener{
 
     public Button stickyButton;  // a sibling of the scrollview, becomes visible the moment dummyStickyView is completely off the screen
-    private View bottomView; //
+    private TextView bottomView; //
     public ObservedScrollView scrollView;
-    private View topView;
+    private TextView topView;
     private LinearLayout rootView;
 
     /**
@@ -33,8 +34,8 @@ public class Main extends ActionBarActivity  implements ObservedScrollView.Scrol
         scrollView.setListener(this);
         stickyButton = (Button) findViewById(R.id.sticky_view);
         rootView = (LinearLayout) findViewById(R.id.outmost_parent);
-        bottomView =  findViewById(R.id.bottom_view);
-        topView =  findViewById(R.id.main_content);
+        bottomView =  (TextView) findViewById(R.id.bottom_view);
+        topView = (TextView) findViewById(R.id.main_content);
     }
 
 
