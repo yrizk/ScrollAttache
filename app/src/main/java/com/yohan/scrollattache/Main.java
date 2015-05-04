@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 
 public class Main extends ActionBarActivity  implements CustomScrollView.ScrollListener{
@@ -21,12 +21,13 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
     public CustomScrollView scrollView;
     private TextView descriptionView;
     private LinearLayout rootView;
+    private boolean stuckToTop = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         scrollView = (CustomScrollView) findViewById(R.id.scroll);
-//        scrollView.setListener(this);
+        scrollView.setListener(this);
         stickyButton = (Button) findViewById(R.id.sticky_view);
         rootView = (LinearLayout) findViewById(R.id.outmost_parent);
         ratingsView = (TextView) findViewById(R.id.ratings);
@@ -50,7 +51,8 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            throwStickyBomb();
+            if (stuckToTop) undoStickyBomb();
+            else throwStickyBomb();
             return true;
         }
 
@@ -62,22 +64,34 @@ public class Main extends ActionBarActivity  implements CustomScrollView.ScrollL
         lp.addRule(RelativeLayout.BELOW,descriptionView.getId());
         ratingsView.setLayoutParams(lp);
         ((ViewGroup) stickyButton.getParent()).removeView(stickyButton);
-        rootView.addView(stickyButton,0);
+        rootView.addView(stickyButton, 0);
+        stuckToTop = true;
+    }
+
+    private void undoStickyBomb() {
+
+        RelativeLayout.LayoutParams lp =(RelativeLayout.LayoutParams) ratingsView.getLayoutParams();
+        lp.addRule(RelativeLayout.BELOW,stickyButton.getId());
+        ratingsView.setLayoutParams(lp);
+        lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        lp.addRule(RelativeLayout.BELOW,descriptionView.getId());
+        rootView.removeView(stickyButton);
+        stickyButton.setLayoutParams(lp);
+        ((ViewGroup)ratingsView.getParent()).addView(stickyButton);
+        stuckToTop = false;
     }
 
 
     @Override
     public void onScroll(int oldTop, int newTop) {
-//        Log.d("onScroll", "Old top : " + oldTop + " newTop : " + newTop);
-//        if (newTop < (mainContent.getTop())) { //
-//            Log.d("onScroll", "dummy button is visible");
-//            stickyButton.setVisibility(View.GONE);
-//            dummyStickyView.setVisibility(View.VISIBLE);
-//    }
-//        else if (newTop > (mainContent.getTop())) {
-//            Log.d("onScroll", "dummy button is not visible");
-//            stickyButton.setVisibility(View.VISIBLE);
-//            dummyStickyView.setVisibility(View.GONE);
-//        }
+        Log.d("onScroll", " newTop : " + newTop + " height: " + stickyButton.getHeight() + " getTop: " + stickyButton.getTop());
+        if(!stuckToTop) {
+            if (newTop + stickyButton.getHeight() >= stickyButton.getTop()) {
+                Toast.makeText(this, "NOW", Toast.LENGTH_SHORT).show();
+                throwStickyBomb();
+            }
+        } else if (newTop <= ratingsView.getTop()) {
+            undoStickyBomb();
+        }
     }
 }
